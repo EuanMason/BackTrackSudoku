@@ -11,16 +11,17 @@ def valid(x, y, num,board):
 	for j in range(0,9):
 		if board[j][y] == num:
 			return False
-	xbox = (x // 3) * 3
-	ybox = (y // 3) * 3
 	for i in range(0,3):
 		for j in range(0,3):
-			if board[xbox+i][ybox+j] == num:
+			if board[((x // 3) * 3)+i][((y // 3) * 3)+j] == num:
 				return False
 	return True
 
 
 def solve(board):
+	if board is None:
+		print('Cannot access NYTimes sudoku')
+		return
 	for i in range(9):
 		for j in range(9):
 			if board[i][j] == 0:
@@ -47,12 +48,10 @@ def getLevel():
 		else:
 			break
 
-
 	return level-1
 
 
 if __name__ == '__main__':
-	# print(valid(0,2,3))
 
 	solve(getBoard(getLevel()))
 
